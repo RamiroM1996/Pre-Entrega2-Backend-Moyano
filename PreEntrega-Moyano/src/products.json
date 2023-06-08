@@ -1,0 +1,57 @@
+[
+	{
+		"id": 1,
+		"title": "Title 1",
+		"description": "Description 1",
+		"code": "code1",
+		"price": 100,
+		"status": true,
+		"stock": 10,
+		"category": "Product"
+		
+	},
+	{
+		"id": 2,
+		"title": "Title 2",
+		"description": "Description 2",
+		"code": "code2",
+		"price": 200,
+		"status": true,
+		"stock": 20,
+		"category": "Product"
+		
+	},
+	{
+		"id": 3,
+		"title": "Title 3",
+		"description": "Description 3",
+		"code": "code3",
+		"price": 300,
+		"status": true,
+		"stock": 30,
+		"category": "Product"
+		
+	},
+	{
+		"id": 4,
+		"title": "Title 4",
+		"description": "Description 4",
+		"code": "code4",
+		"price": 400,
+		"status": true,
+		"stock": 40,
+		"category": "Product"
+		
+	},
+	{
+		"id": 5,
+		"title": "Title 5",
+		"description": "Description 5",
+		"code": "code5",
+		"price": 500,
+		"status": true,
+		"stock": 50,
+		"category": "Product"
+		
+	}
+]
