@@ -7,8 +7,13 @@
 		"price": 100,
 		"status": true,
 		"stock": 10,
-		"category": "Product"
-		
+		"category": "Product",
+		"thumbnail": [
+			{
+				"image1": "./public/images/one-1.png",
+				"image2": "./public/images/one-2.png"
+			}
+		]
 	},
 	{
 		"id": 2,
@@ -18,8 +23,13 @@
 		"price": 200,
 		"status": true,
 		"stock": 20,
-		"category": "Product"
-		
+		"category": "Product",
+		"thumbnail": [
+			{
+				"image1": "./public/images/two-1.png",
+				"image2": "./public/images/two-2.png"
+			}
+		]
 	},
 	{
 		"id": 3,
@@ -29,8 +39,13 @@
 		"price": 300,
 		"status": true,
 		"stock": 30,
-		"category": "Product"
-		
+		"category": "Product",
+		"thumbnail": [
+			{
+				"image1": "./public/images/three-1.png",
+				"image2": "./public/images/three-2.png"
+			}
+		]
 	},
 	{
 		"id": 4,
@@ -40,8 +55,13 @@
 		"price": 400,
 		"status": true,
 		"stock": 40,
-		"category": "Product"
-		
+		"category": "Product",
+		"thumbnail": [
+			{
+				"image1": "./public/images/four-1.png",
+				"image2": "./public/images/four-2.png"
+			}
+		]
 	},
 	{
 		"id": 5,
@@ -51,7 +71,12 @@
 		"price": 500,
 		"status": true,
 		"stock": 50,
-		"category": "Product"
-		
+		"category": "Product",
+		"thumbnail": [
+			{
+				"image1": "./public/images/five-1.png",
+				"image2": "./public/images/five-2.png"
+			}
+		]
 	}
 ]

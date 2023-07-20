@@ -6,21 +6,21 @@ export default class CartsManager {
 
 	constructor(fileName) {
 		this.#carts = [];
-		this.#path = `./src/${fileName}.json`;
+		this.#path = `./src/data/${fileName}.json`;
 	};
 
 	getCarts() {
-		
+		// Validar si existe el archivo:
 		if (!fs.existsSync(this.#path)) {
 			try {
-				
+				// Si no existe, crearlo:
 				fs.writeFileSync(this.#path, JSON.stringify(this.#carts));
 			} catch (err) {
 				return `Writing error while getting carts: ${err}`;
 			};
 		};
 
-		
+		// Leer archivo y convertirlo en objeto:
 		try {
 			const data = fs.readFileSync(this.#path, "utf8");
 			const dataArray = JSON.parse(data);
@@ -33,7 +33,7 @@ export default class CartsManager {
 	lastId() {
 		const carts = this.getCarts();
 
-		
+		// Obtener y devolver último ID:
 		if (carts.length > 0) {
 			const lastId = carts.reduce((maxId, cart) => {
 				return cart.id > maxId ? cart.id : maxId;
@@ -41,7 +41,7 @@ export default class CartsManager {
 			return lastId;
 		};
 
-		
+		// Si el array está vacío, devolver 0:
 		return 0;
 	};
 
@@ -54,7 +54,7 @@ export default class CartsManager {
 				products: []
 			};
 
-			
+			// Agregar carrito y escribir el archivo:
 			carts.push(newCart);
 			fs.writeFileSync(this.#path, JSON.stringify(carts));
 			return `Cart added with ID ${id}`;
@@ -68,7 +68,7 @@ export default class CartsManager {
 			const carts = this.getCarts();
 			const cart = carts.find(cart => cart.id === id);
 	
-			
+			// Validar si el carrito existe:
 			if (!cart) {
 				return `There's no cart with ID ${id}`;
 			};
@@ -82,13 +82,14 @@ export default class CartsManager {
 		try {
 			const carts = this.getCarts();
 			const cart = carts.find(cart => cart.id === cartId);
+
 			const product = cart.products.find(product => product.product === productId);
 
-			
+			// Validar si el producto ya está agregado:
 			if (product) {
 				product.quantity += 1;
 			} else {
-				
+				// Si no, agregarlo:
 				const newProduct = {
 					product: productId,
 					quantity: 1,
@@ -102,22 +103,35 @@ export default class CartsManager {
 		};
 	};
 
-	deleteCart(id) {
+	deleteCart(cartId, productId) {
 		try {
 			const carts = this.getCarts();
-			const cartIndex = carts.findIndex(cart => cart.id === id);
+			const cart = carts.find(cart => cart.id === cartId);
 
-			
-			if (cartIndex === -1) {
-				return `There's no cart with ID ${id}`;
+			// Validar ID de carrito:
+			if (!cart) {
+				return `There's no cart with ID ${cartId}`;
 			};
 
-			
-			carts.splice(cartIndex, 1);
+			const productToDelete = cart.products.find(item => item.product === productId);
+
+			// Validar ID de producto:
+			if (!productToDelete) {
+				return `There's no product ${productId} in cart ${cartId}`;
+			};
+
+			// Si es correcto, filtrar carrito, borrar producto y escribir el archivo:
+			const filteredCart = cart.products.filter(item => {
+				return (
+					item.product !== productToDelete.product ||
+					item.quantity !== productToDelete.quantity
+				);
+			});
+			cart.products = filteredCart;
 			fs.writeFileSync(this.#path, JSON.stringify(carts));
-			return `Cart deleted`;
+			return `Product ${productId} deleted from cart ${cartId}.`;
 		} catch (err) {
-			return `Writing error while deleting the cart ${id}: ${err}`;
+			return `Writing error while deleting the cart ${cartId}: ${err}`;
 		};
 	};
 };
